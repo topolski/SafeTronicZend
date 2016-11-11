@@ -1,0 +1,23 @@
+<?php echo '{status:1,id:' . $this->podaci[0]->getIdProizvoda() . ',price:' . $this->podaci[0]->getCena() . ',txt:\'\
+            \<table width="100%" id="table_' . $this->podaci[0]->getIdProizvoda() . '">\
+            <tr>\
+            <td width="45%">' . $this->podaci[0]->getNaziv() . '</td>\
+            <td width="10%">€' . $this->podaci[0]->getCena() . '</td>\
+            <td width="10%"><select name="' . $this->podaci[0]->getIdProizvoda() . '_cnt" id="' . $this->podaci[0]->getIdProizvoda() . '_cnt" onchange="change(' . $this->podaci[0]->getIdProizvoda() . ');">';
+        for ($i = 0; $i < 11; $i++) {
+            if ($i == 1) {
+                echo "<option value=" . $i . " selected>" . $i . "</option>";
+            }else{
+            echo "<option value=" . $i . ">" . $i . "</option>";
+            }
+        }
+        echo '</slect>\
+            <td width="15%"><select name="' . $this->podaci[0]->getIdProizvoda() . '_boja" id="' . $this->podaci[0]->getIdProizvoda() . '_boja" >';
+        $boje = explode(',', $this->podaci[0]->getBoja());
+        foreach ($boje as $boja) {
+            echo "<option value=" . $boja . " selected>" . $boja . "</option>";
+        }
+        echo '</slect></td>\
+	<a href="#" onclick="remove(' . $this->podaci[0]->getIdProizvoda() . ');return false;" class="remove"></a>\
+            </tr>\
+            </table>\'}';

@@ -1,0 +1,4 @@
+<?php 
+    echo '<strong>' . $this->podaci[0]->getNaziv() . 
+         '</strong><br><strong>cena: €' . $this->podaci[0]->getCena() . 
+         '</strong><br><strong>opis: '.substr($this->podaci[0]->getOpis(), 0, 50).'<br>'.substr($this->podaci[0]->getOpis(), 50, 50).' ...</strong><small>Prevucite u vašu e-korpu ako ste zainteresovani za kupovinu</small>';

@@ -1,0 +1,53 @@
+<?php $this->placeholder('stranicenje')->captureStart(); ?>
+<script type="text/javascript">
+
+    $(document).ready(function() {
+        var prikazPoStrani = 9;
+        var brProizvoda = $('#stranicenje').children().size();
+        var brStrana = Math.ceil(brProizvoda / prikazPoStrani);
+        $('#trenutnaStrana').val(0);
+        $('#prikazPoStrani').val(prikazPoStrani);
+        var strLinkoviHtml = '<a class="prethodniLink" href="javascript:prethodna();">Prethodna</a>';
+        var trenutniLink = 0;
+        while (brStrana > trenutniLink) {
+            strLinkoviHtml += '<a class="linkStrane" href="javascript:idiNaStranu(' + trenutniLink + ')" longdesc="' + trenutniLink + '">' + (trenutniLink + 1) + '</a>';
+            trenutniLink++;
+        }
+        strLinkoviHtml += '<a class="sledeciLink" href="javascript:sledeca();">Sledeća</a>';
+        $('#strLinkovi').html(strLinkoviHtml);
+        $('#strLinkovi .linkStrane:first').addClass('aktivnaStrana');
+        $('#stranicenje').children().css('display', 'none');
+        $('#stranicenje').children().slice(0, prikazPoStrani).css('display', 'block');
+    });
+
+    function prethodna() {
+        novaStrana = parseInt($('#trenutnaStrana').val()) - 1;
+        if ($('.aktivnaStrana').prev('.linkStrane').length == true) {
+            idiNaStranu(novaStrana);
+        }
+    }
+    ;
+
+    function sledeca() {
+        novaStrana = parseInt($('#trenutnaStrana').val()) + 1;
+        if ($('.aktivnaStrana').next('.linkStrane').length == true) {
+            idiNaStranu(novaStrana);
+        }
+    }
+    ;
+
+    function idiNaStranu(brStrane) {
+        var prikazPoStrani = parseInt($('#prikazPoStrani').val());
+        kreni = brStrane * prikazPoStrani;
+        zavrsi = kreni + prikazPoStrani;
+        $('#stranicenje').children().css('display', 'none').slice(kreni, zavrsi).css('display', 'block');
+        $('.linkStrane[longdesc=' + brStrane + ']').addClass('aktivnaStrana').siblings('.aktivnaStrana').removeClass('aktivnaStrana');
+        $('#trenutnaStrana').val(brStrane);
+    }
+    ;
+
+
+
+</script>
+<?php $this->placeholder('stranicenje')->captureEnd(); 
+

@@ -1,0 +1,23 @@
+<div class="container">
+    <div class="content-area">
+        <div class="content">
+            <?php
+            if (count($this->podaci) == 0) {
+                echo '<h3>Došlo je do greške sa vašom narudžbinom!</h3>';
+            } else {
+                echo '<h1>Poručili ste:</h1>';
+                foreach ($this->podaci as $podatak) {
+                    if($this->cnt[$podatak->getIdProizvoda() . '_cnt'] != 0){
+                        echo '<h4>' . $this->cnt[$podatak->getIdProizvoda() . '_cnt'] . ' x ' . $podatak->getNaziv() . ', boja: ' . $this->cnt[$podatak->getIdProizvoda() . '_boja'] . ' </h4>';
+                    }                   
+                }
+                echo '<h4>Ukupno: € ' . $this->total . '</h4><br>';     
+                echo '<h4>Vaša porudžbina je upisana u bazu!</h4>';
+            }
+            ?>
+            <div class="clear"></div>
+        </div>
+    </div>
+    <div class="bottom-container-border">
+    </div>
+</div>

@@ -1,0 +1,207 @@
+<?xml version="1.0"?>
+<projectProfile type="default" version="1.12.3">
+  <projectDirectory>
+    <projectProfileFile filesystemName=".zfproject.xml"/>
+    <applicationDirectory classNamePrefix="Application_">
+      <configsDirectory>
+        <applicationConfigFile type="ini"/>
+      </configsDirectory>
+      <controllersDirectory>
+        <controllerFile controllerName="Index">
+          <actionMethod actionName="index"/>
+          <actionMethod actionName="pretraga"/>
+        </controllerFile>
+        <controllerFile controllerName="Error"/>
+        <controllerFile controllerName="Formulari">
+          <actionMethod actionName="index"/>
+          <actionMethod actionName="logovanje"/>
+          <actionMethod actionName="kontakt"/>
+          <actionMethod actionName="autor"/>
+          <actionMethod actionName="logout"/>
+          <actionMethod actionName="registracija"/>
+        </controllerFile>
+        <controllerFile controllerName="Proizvodi">
+          <actionMethod actionName="index"/>
+          <actionMethod actionName="kategorija"/>
+          <actionMethod actionName="detalji"/>
+        </controllerFile>
+        <controllerFile controllerName="Administracija">
+          <actionMethod actionName="index"/>
+          <actionMethod actionName="kategorije"/>
+          <actionMethod actionName="proizvodi"/>
+          <actionMethod actionName="korisnici"/>
+          <actionMethod actionName="narudzbine"/>
+        </controllerFile>
+        <controllerFile controllerName="Kupovina">
+          <actionMethod actionName="index"/>
+          <actionMethod actionName="pregled"/>
+          <actionMethod actionName="podaci"/>
+          <actionMethod actionName="korpa"/>
+          <actionMethod actionName="mojePorudzbine"/>
+        </controllerFile>
+        <controllerFile controllerName="WebServis">
+          <actionMethod actionName="index"/>
+          <actionMethod actionName="soap"/>
+          <actionMethod actionName="wsdl"/>
+        </controllerFile>
+      </controllersDirectory>
+      <formsDirectory>
+        <formFile formName="Pretraga"/>
+        <formFile formName="Logovanje"/>
+        <formFile formName="Kontakt"/>
+        <formFile formName="Registracija"/>
+        <formFile formName="AdminIzbor"/>
+        <formFile formName="Proizvod"/>
+        <formFile formName="Kategorija"/>
+      </formsDirectory>
+      <layoutsDirectory>
+        <layoutScriptsDirectory>
+          <layoutScriptFile layoutName="layout"/>
+        </layoutScriptsDirectory>
+      </layoutsDirectory>
+      <modelsDirectory>
+        <dbTableDirectory>
+          <dbTableFile dbTableName="Kategorije"/>
+          <dbTableFile dbTableName="Proizvodi"/>
+          <dbTableFile dbTableName="Korisnici"/>
+          <dbTableFile dbTableName="KorisnikUloga"/>
+          <dbTableFile dbTableName="Uloge"/>
+          <dbTableFile dbTableName="Narudzbine"/>
+          <dbTableFile dbTableName="NarudzbinaProizvod"/>
+        </dbTableDirectory>
+        <modelFile modelName="KategorijeM"/>
+        <modelFile modelName="KategorijeE"/>
+        <modelFile modelName="ProizvodiE"/>
+        <modelFile modelName="ProizvodiM"/>
+        <modelFile modelName="KorisniciE"/>
+        <modelFile modelName="KorisniciM"/>
+        <modelFile modelName="UlogeE"/>
+        <modelFile modelName="UlogeM"/>
+        <modelFile modelName="KorisnikulogaE"/>
+        <modelFile modelName="KorisnikulogaM"/>
+        <modelFile modelName="Korpa"/>
+        <modelFile modelName="NarudzbineE"/>
+        <modelFile modelName="NarudzbineM"/>
+        <modelFile modelName="NarudzbinaProizvodE"/>
+        <modelFile modelName="NarudzbinaProizvodM"/>
+      </modelsDirectory>
+      <modulesDirectory enabled="false"/>
+      <servicesDirectory enabled="false"/>
+      <viewsDirectory>
+        <viewScriptsDirectory>
+          <viewControllerScriptsDirectory forControllerName="Index">
+            <viewScriptFile forActionName="index"/>
+          </viewControllerScriptsDirectory>
+          <viewControllerScriptsDirectory forControllerName="Error">
+            <viewScriptFile forActionName="error"/>
+          </viewControllerScriptsDirectory>
+          <viewControllerScriptsDirectory forControllerName="Formulari">
+            <viewScriptFile forActionName="index"/>
+          </viewControllerScriptsDirectory>
+          <viewControllerScriptsDirectory forControllerName="Formulari">
+            <viewScriptFile forActionName="logovanje"/>
+          </viewControllerScriptsDirectory>
+          <viewControllerScriptsDirectory forControllerName="Formulari">
+            <viewScriptFile forActionName="kontakt"/>
+          </viewControllerScriptsDirectory>
+          <viewControllerScriptsDirectory forControllerName="Formulari">
+            <viewScriptFile forActionName="autor"/>
+          </viewControllerScriptsDirectory>
+          <viewControllerScriptsDirectory forControllerName="Proizvodi">
+            <viewScriptFile forActionName="index"/>
+          </viewControllerScriptsDirectory>
+          <viewControllerScriptsDirectory forControllerName="Proizvodi">
+            <viewScriptFile forActionName="kategorija"/>
+          </viewControllerScriptsDirectory>
+          <viewControllerScriptsDirectory forControllerName="Proizvodi">
+            <viewScriptFile forActionName="detalji"/>
+          </viewControllerScriptsDirectory>
+          <viewControllerScriptsDirectory forControllerName="Index">
+            <viewScriptFile forActionName="pretraga"/>
+          </viewControllerScriptsDirectory>
+          <viewControllerScriptsDirectory forControllerName="Formulari">
+            <viewScriptFile forActionName="logout"/>
+          </viewControllerScriptsDirectory>
+          <viewControllerScriptsDirectory forControllerName="Administracija">
+            <viewScriptFile forActionName="index"/>
+          </viewControllerScriptsDirectory>
+          <viewControllerScriptsDirectory forControllerName="Formulari">
+            <viewScriptFile forActionName="registracija"/>
+          </viewControllerScriptsDirectory>
+          <viewControllerScriptsDirectory forControllerName="Kupovina">
+            <viewScriptFile forActionName="index"/>
+          </viewControllerScriptsDirectory>
+          <viewControllerScriptsDirectory forControllerName="Kupovina">
+            <viewScriptFile forActionName="pregled"/>
+          </viewControllerScriptsDirectory>
+          <viewControllerScriptsDirectory forControllerName="Kupovina">
+            <viewScriptFile forActionName="podaci"/>
+          </viewControllerScriptsDirectory>
+          <viewControllerScriptsDirectory forControllerName="Kupovina">
+            <viewScriptFile forActionName="korpa"/>
+          </viewControllerScriptsDirectory>
+          <viewControllerScriptsDirectory forControllerName="Kupovina">
+            <viewScriptFile forActionName="mojePorudzbine"/>
+          </viewControllerScriptsDirectory>
+          <viewControllerScriptsDirectory forControllerName="Administracija">
+            <viewScriptFile forActionName="kategorije"/>
+          </viewControllerScriptsDirectory>
+          <viewControllerScriptsDirectory forControllerName="Administracija">
+            <viewScriptFile forActionName="proizvodi"/>
+          </viewControllerScriptsDirectory>
+          <viewControllerScriptsDirectory forControllerName="Administracija">
+            <viewScriptFile forActionName="korisnici"/>
+          </viewControllerScriptsDirectory>
+          <viewControllerScriptsDirectory forControllerName="Administracija">
+            <viewScriptFile forActionName="narudzbine"/>
+          </viewControllerScriptsDirectory>
+          <viewControllerScriptsDirectory forControllerName="WebServis">
+            <viewScriptFile forActionName="index"/>
+          </viewControllerScriptsDirectory>
+          <viewControllerScriptsDirectory forControllerName="WebServis">
+            <viewScriptFile forActionName="soap"/>
+          </viewControllerScriptsDirectory>
+          <viewControllerScriptsDirectory forControllerName="WebServis">
+            <viewScriptFile forActionName="wsdl"/>
+          </viewControllerScriptsDirectory>
+        </viewScriptsDirectory>
+        <viewHelpersDirectory/>
+        <viewFiltersDirectory enabled="false"/>
+      </viewsDirectory>
+      <bootstrapFile filesystemName="Bootstrap.php"/>
+    </applicationDirectory>
+    <dataDirectory enabled="false">
+      <cacheDirectory enabled="false"/>
+      <searchIndexesDirectory enabled="false"/>
+      <localesDirectory enabled="false"/>
+      <logsDirectory enabled="false"/>
+      <sessionsDirectory enabled="false"/>
+      <uploadsDirectory enabled="false"/>
+    </dataDirectory>
+    <docsDirectory>
+      <file filesystemName="README.txt"/>
+    </docsDirectory>
+    <libraryDirectory>
+      <zfStandardLibraryDirectory enabled="false"/>
+    </libraryDirectory>
+    <publicDirectory>
+      <publicStylesheetsDirectory enabled="false"/>
+      <publicScriptsDirectory enabled="false"/>
+      <publicImagesDirectory enabled="false"/>
+      <publicIndexFile filesystemName="index.php"/>
+      <htaccessFile filesystemName=".htaccess"/>
+    </publicDirectory>
+    <projectProvidersDirectory enabled="false"/>
+    <temporaryDirectory enabled="false"/>
+    <testsDirectory>
+      <testPHPUnitConfigFile filesystemName="phpunit.xml"/>
+      <testPHPUnitBootstrapFile filesystemName="bootstrap.php"/>
+      <testApplicationDirectory>
+        <testApplicationControllerDirectory>
+          <testApplicationControllerFile forControllerName="Index"/>
+        </testApplicationControllerDirectory>
+      </testApplicationDirectory>
+      <testLibraryDirectory/>
+    </testsDirectory>
+  </projectDirectory>
+</projectProfile>

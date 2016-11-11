@@ -1,0 +1,43 @@
+<div id="view-content">
+    <h1>Rezultati pretrage</h1>
+    <h3>Pojam: <?php print $this->pojam; ?></h3>
+    <?php
+    if (count($this->pretraga) > 0) {
+        $i = 1;
+        $j = 3;
+        if ($this->admin == 1) {
+            foreach ($this->pretraga as $proizvod) {
+                if (($j - $i) == 0) {
+                    echo "<div class='product_box no_margin_right'><div class='slika'><a href='" . $this->url(array('b' => $proizvod->getIdKategorije(), 'p' => $proizvod->getIdProizvoda()), 'detalji') . "'><img src='" . $proizvod->getSlikam() . "' alt='" . $proizvod->getNaziv() . "' /></a></div>"
+                    . "<h3>" . $proizvod->getNaziv() . "</h3><p class='product_price'>€ " . $proizvod->getCena() . "</p>"
+                    . "<a href='" . $this->url(array('a' => 1, 'b' => $proizvod->getIdProizvoda()), 'proizvod') . "' class='add_to_card'>Izmeni</a>"
+                    . "<a href='" . $this->url(array('a' => 2, 'b' => $proizvod->getIdProizvoda()), 'proizvod') . "' class='add_to_card'>Obriši</a></div>";
+                    $j = $j + 3;
+                } else {
+                    echo "<div class='product_box'><div class='slika'><a href='" . $this->url(array('b' => $proizvod->getIdKategorije(), 'p' => $proizvod->getIdProizvoda()), 'detalji') . "'><img src='" . $proizvod->getSlikam() . "' alt='" . $proizvod->getNaziv() . "' /></a></div>"
+                    . "<h3>" . $proizvod->getNaziv() . "</h3><p class='product_price'>€ " . $proizvod->getCena() . "</p>"
+                    . "<a href='" . $this->url(array('a' => 1, 'b' => $proizvod->getIdProizvoda()), 'proizvod') . "' class='add_to_card'>Izmeni</a>"
+                    . "<a href='" . $this->url(array('a' => 2, 'b' => $proizvod->getIdProizvoda()), 'proizvod') . "' class='add_to_card'>Obriši</a></div>";
+                }
+                $i++;
+            }
+        } else {
+            foreach ($this->pretraga as $proizvod) {
+                if (($j - $i) == 0) {
+                    echo "<div class='product_box no_margin_right'><div class='slika'><a href='" . $this->url(array('b' => $proizvod->getIdKategorije(), 'p' => $proizvod->getIdProizvoda()), 'detalji') . "'><img src='" . $proizvod->getSlikam() . "' alt='" . $proizvod->getNaziv() . "' /></a></div>"
+                    . "<h3>" . $proizvod->getNaziv() . "</h3><p class='product_price'>€ " . $proizvod->getCena() . "</p>"
+                    . "<a href='" . $this->url(array('b' => $proizvod->getIdKategorije(), 'p' => $proizvod->getIdProizvoda()), 'detalji') . "' class='add_to_card'>Detalji</a></div>";
+                    $j = $j + 3;
+                } else {
+                    echo "<div class='product_box'><div class='slika'><a href='" . $this->url(array('b' => $proizvod->getIdKategorije(), 'p' => $proizvod->getIdProizvoda()), 'detalji') . "'><img src='" . $proizvod->getSlikam() . "' alt='" . $proizvod->getNaziv() . "' /></a></div>"
+                    . "<h3>" . $proizvod->getNaziv() . "</h3><p class='product_price'>€ " . $proizvod->getCena() . "</p>"
+                    . "<a href='" . $this->url(array('b' => $proizvod->getIdKategorije(), 'p' => $proizvod->getIdProizvoda()), 'detalji') . "' class='add_to_card'>Detalji</a></div>";
+                }
+                $i++;
+            }
+        }
+    } else {
+        print "<h5>Nije pronađen ni jedan proizvod!</h5>";
+    }
+    ?>
+</div>

@@ -1,0 +1,13 @@
+<h2>Vaše porudžbine:</h2>
+<?php
+if (count($this->sve) == 0) {
+    print "Nemate ništa poručeno!";
+} else {
+    $i = 1;
+    print "<table><th>Porudžbina</th><th>Datum</th><th>Proizvodi</th><th>Količina</th><th>Boja</th><th>Ukupno</th>";
+    foreach ($this->sve as $nar) {
+        print "<tr><td>" . $i . ":</td><td> " . date('d.m.Y. H:i', $nar->getDatum()) . "</td><td>" . $this->htmlList($nar->naziviProizvoda(), FALSE, array(), FALSE) . "</td><td>" . $this->htmlList($nar->getKolicina(), FALSE, array(), FALSE) . "</td><td>" . $this->htmlList($nar->getBoja(), FALSE, array(), FALSE) . "</td><td>€ " . $nar->getCena() . '</td></tr>';
+        $i++;
+    }
+    print "</table>";
+}

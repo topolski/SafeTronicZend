@@ -1,0 +1,11 @@
+<div id="view-content">
+     <h3>Forma za registraciju:</h3>
+    <?php print $this->forma; ?><br>
+    <?php
+    if (count($this->greske) > 0) {
+        foreach ($this->greske as $greska) {
+            print "<h3>" . $greska . "</h3>";
+        }
+    }
+    ?> 
+</div>

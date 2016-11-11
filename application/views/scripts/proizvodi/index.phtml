@@ -1,0 +1,29 @@
+<div id="view-content">
+    <h1>Svi naši proizvodi</h1>
+    <?php
+    $i = 1;
+    $j = 3;
+    if (count($this->proizvodi) > 9) {
+        $this->render('dodatno/_stranicenje.phtml');
+        echo "<input type='hidden' id='trenutnaStrana' />";
+        echo "<input type='hidden' id='prikazPoStrani' />";
+        echo "<div id='stranicenje'>";
+    }
+    foreach ($this->proizvodi as $proizvod) {
+        if (($j - $i) == 0) {
+            echo "<div class='product_box no_margin_right'><div class='slika'><a href='" . $this->url(array('b' => $proizvod->getIdKategorije(), 'p' => $proizvod->getIdProizvoda()), 'detalji') . "'><img src='" . $proizvod->getSlikam() . "' alt='" . $proizvod->getNaziv() . "' /></a></div>"
+            . "<h3>" . $proizvod->getNaziv() . "</h3><p class='product_price'>€ " . $proizvod->getCena() . "</p>"
+            . "<a href='" . $this->url(array('b' => $proizvod->getIdKategorije(), 'p' => $proizvod->getIdProizvoda()), 'detalji') . "' class='add_to_card'>Detalji</a></div>";
+            $j = $j + 3;
+        } else {
+            echo "<div class='product_box'><div class='slika'><a href='" . $this->url(array('b' => $proizvod->getIdKategorije(), 'p' => $proizvod->getIdProizvoda()), 'detalji') . "'><img src='" . $proizvod->getSlikam() . "' alt='" . $proizvod->getNaziv() . "' /></a></div>"
+            . "<h3>" . $proizvod->getNaziv() . "</h3><p class='product_price'>€ " . $proizvod->getCena() . "</p>"
+            . "<a href='" . $this->url(array('b' => $proizvod->getIdKategorije(), 'p' => $proizvod->getIdProizvoda()), 'detalji') . "' class='add_to_card'>Detalji</a></div>";
+        }
+        $i++;
+    }
+    if (count($this->proizvodi) > 9) {
+        echo "</div><div id='strLinkovi'></div>";
+    }
+    ?>
+</div>

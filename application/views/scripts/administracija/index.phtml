@@ -1,0 +1,99 @@
+<h4>Dodavanje proizvoda i kategorija:</h4>
+<?php
+    print "<a href='". $this->url(array('a' => 3, 'b' => 0), 'proizvod') ."'>Dodaj proizvod</a><br>";
+    print "<a href='". $this->url(array('a' => 4, 'b' => 0), 'proizvod') ."'>Dodaj slike za proizvod</a><br>";
+    print "<a href='" . $this->url(array('a' => 3, 'b' => 0), 'kategorija') . "'>Dodaj kategoriju</a><br><br>";
+?>
+<h4>Kategorije:</h4>
+<table>
+    <thead>
+    <th>Naziv</th>
+    <th>Kratak naziv</th>
+    <th>Brisanje</th>
+    <th>Izmena</th>
+</thead>
+<tbody>
+    <?php
+    foreach ($this->kategorije as $kategorija) {
+        print "<tr><td>" . $kategorija->getPunNaziv() . "</td><td>" . $kategorija->getKratakNaziv() . "</td><td><a href='" . $this->url(array('a' => 2, 'b' => $kategorija->getId()), 'kategorija') . "'>Obriši</a></td><td><a href='" . $this->url(array('a' => 1, 'b' => $kategorija->getId()), 'kategorija') . "'>Izmeni</a></td></tr>";
+    }
+    ?>
+</tbody>
+</table><br><br>
+<h4>Korisnici:</h4>
+<table>
+    <thead>
+    <th>Korisničko ime</th>
+    <th>Email</th>
+    <th>Mobilni</th>
+    <th>Vreme registracije</th>
+    <th>Vreme pristupa</th>
+    <th>Uloga</th>
+    <th>Status</th>
+    <th>Brisanje</th>
+</thead>
+<tbody>
+    <?php
+    foreach ($this->korisnici as $korisnik) {
+        $status = $korisnik->getStatus() == 1 ? 'Aktivan' : 'Blokiran';
+        $uloge = $this->htmlList($korisnik->naziviUloga(), FALSE, array(), FALSE);
+        print "<tr><td>" . $korisnik->getKorisnickoIme() . "</td><td>" . $korisnik->getEmail() . "</td><td>0" . $korisnik->getMobilni() . "</td>"
+                . "<td>" . date('d.m.Y. H:i', $korisnik->getVremeRegistracije()) . "</td><td>" . date('d.m.Y. H:i', $korisnik->getVremePristupa()) . "</td>"
+                . "<td>" . $uloge . "</td><td>" . $status . "</td>"
+                . "<td><a href='" . $this->url(array('a' => 2, 'b' => $korisnik->getIdKorisnika()), 'korisnik') . "'>Obriši</a></td>"
+                . "</tr>";
+    }
+    ?>
+</tbody>
+</table><br><br>
+<h4>Narudžbine:</h4>
+<table>
+    <thead>
+    <th>Datum</th>
+    <th>Korisnik</th>
+    <th>Cena</th>
+    <th>Proizvodi</th>
+    <th>Količina</th>
+    <th>Boja</th>
+    <th>Brisanje</th>
+</thead>
+<tbody>
+    <?php
+    foreach ($this->narudzbine as $narudzbina) {
+        $k = $narudzbina->getKorisnika();
+        $kime = $k['korisnickoIme'];
+        print "<tr>"
+                . "<td>" . date('d.m.Y. H:i', $narudzbina->getDatum()) . "</td><td>" . $kime . "</td>"
+                . "<td>" . $narudzbina->getCena() . " €</td><td>" . $this->htmlList($narudzbina->naziviProizvoda(), FALSE, array(), FALSE) . "</td><td>" . $this->htmlList($narudzbina->getKolicina(), FALSE, array(), FALSE) . "</td><td>" . $this->htmlList($narudzbina->getBoja(), FALSE, array(), FALSE) . "</td>"
+                . "<td><a href='" . $this->url(array('a' => 2, 'b' => $narudzbina->getIdNarudzbine()), 'narudzbina') . "'>Obriši</a></td>"
+                . "</tr>";
+    }
+    ?>
+</tbody>
+</table><br><br>
+<h4>Narudžbine poslate:</h4>
+<table>
+    <thead>
+    <th>Datum</th>
+    <th>Datum kada je poslato</th>
+    <th>Korisnik</th>
+    <th>Cena</th>
+    <th>Proizvodi</th>
+    <th>Količina</th>
+    <th>Boja</th>
+    <th>Brisanje</th>
+</thead>
+<tbody>
+    <?php
+    foreach ($this->narudzbineposlate as $narudzbina) {
+        $k = $narudzbina->getKorisnika();
+        $kime = $k['korisnickoIme'];
+        print "<tr>"
+                . "<td>" . date('d.m.Y. H:i', $narudzbina->getDatum()) . "</td><td>" . date('d.m.Y. H:i', $narudzbina->getDatumP()) . "</td><td>" . $kime . "</td>"
+                . "<td>" . $narudzbina->getCena() . " €</td><td>" . $this->htmlList($narudzbina->naziviProizvoda(), FALSE, array(), FALSE) . "</td><td>" . $this->htmlList($narudzbina->getKolicina(), FALSE, array(), FALSE) . "</td><td>" . $this->htmlList($narudzbina->getBoja(), FALSE, array(), FALSE) . "</td>"
+                . "<td><a href='" . $this->url(array('a' => 2, 'b' => $narudzbina->getIdNarudzbine()), 'narudzbina') . "'>Obriši</a></td>"
+                . "</tr>";
+    }
+    ?>
+</tbody>
+</table><br><br>

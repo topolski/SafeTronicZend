@@ -1,0 +1,19 @@
+<?php $this->placeholder('slajder')->captureStart(); ?>
+<script type="text/javascript">
+
+    $(document).ready(function() {
+
+        $(".carousel").dualSlider({
+            auto: true,
+            autoDelay: 6000,
+            easingCarousel: "swing",
+            easingDetails: "easeOutBack",
+            durationCarousel: 1000,
+            durationDetails: 600
+        });
+
+    });
+
+</script>
+<?php $this->placeholder('slajder')->captureEnd(); ?>
+

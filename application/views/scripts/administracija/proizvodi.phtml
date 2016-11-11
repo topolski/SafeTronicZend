@@ -1,0 +1,10 @@
+<?php print "<h4>".$this->poruka."</h4><br>";
+if($this->formaSlika != null){
+  print  "<div class='content_halfKontakt float_l'>";
+  print      "<div id='contact_form'>";
+            print $this->formaSlika; 
+  print      "</div>";
+  print   "</div>";
+}else if($this->forma != null){
+      print $this->forma;
+  }

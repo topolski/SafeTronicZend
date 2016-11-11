@@ -1,0 +1,164 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+    <head>
+        <?php print $this->headTitle(); ?>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <meta name="keywords" content="station shop, theme, free template, templatemo, CSS, HTML" />
+        <meta name="description" content="Station Shop Theme, free CSS template provided by templatemo.com" />
+        <?php print $this->headLink(); ?>
+        <?php print $this->headScript(); ?>
+       
+        <script language="javascript" type="text/javascript">
+            function clearText(field)
+            {
+                if (field.defaultValue == field.value)
+                    field.value = '';
+                else if (field.value == '')
+                    field.value = field.defaultValue;
+            }
+        </script>
+
+        <script type="text/javascript">
+
+            ddsmoothmenu.init({
+                mainmenuid: "top_nav", //menu DIV id
+                orientation: 'h', //Horizontal or vertical menu: Set to "h" or "v"
+                classname: 'ddsmoothmenu', //class added to menu's outer DIV
+                //customtheme: ["#1c5a80", "#18374a"],
+                contentsource: "markup" //"markup" or ["container_id", "path_to_menu_file"]
+            })
+
+        </script>
+
+        <?php print $this->placeholder('slajderjs'); ?>
+        <?php print $this->placeholder('stranicenje'); ?>
+        <?php print $this->placeholder('lbox'); ?>
+        <?php print $this->placeholder('korpa'); ?>
+    </head>
+    <body>
+        <?php
+            $ulogovan = null;        
+            $autentifikacija = Zend_Auth::getInstance();
+            $this->ulogovan = $autentifikacija->hasIdentity();
+            $korisnik = new Application_Model_KorisniciE();
+            $korisnik = $autentifikacija->getIdentity();
+        ?>
+        <div id="templatemo_wrapper">
+            <div id="templatemo_header">
+                <div id="site_title">
+                    <h1><a href="<?php print $this->url(array(), 'naslovna'); ?>" rel="nofollow"></a></h1>
+                </div>
+                <div id="header_right">
+                    <?php 
+                        if ($this->ulogovan) {
+                            if ($this->ulogovan && in_array('Administrator', $korisnik->naziviUloga())) {
+                                print "<a href='".$this->url(array(), 'administracija')."'>Administracija</a> | ";
+                            }
+                            print "<a href='".$this->url(array(), 'kupovina')."'>Kupovina</a> | ";
+                            print "<a href='".$this->url(array(), 'poruceno')."'>Moje porudžbine</a> | ";
+                            print "<a href='".$this->url(array(), 'logout')."'>Izlogujete se</a>";                             
+                        }else{
+                            print "<a href='".$this->url(array(), 'logovanje')."'>Logovanje</a> | ";
+                            print "<a href='".$this->url(array(), 'registracija')."'>Registracija</a>";                           
+                        }
+                    ?>                   
+                </div>
+                <div class="cleaner"></div>
+            </div> <!-- END of templatemo_header -->
+            <div id="templatemo_menu">
+                <div id="top_nav" class="ddsmoothmenu">
+                    <ul>
+                        <li><a href="<?php print $this->url(array(), 'naslovna'); ?>" <?php echo $this->layout()->link1; ?>>Naslovna</a></li>
+                        <li><a href="<?php echo $this->url(array(), 'proizvodiSvi'); ?>" <?php echo $this->layout()->link2; ?> >Proizvodi</a>
+                            <ul>
+                                <?php
+                                $kategorijeIzBaze = new Application_Model_KategorijeM();
+                                $kategorije = $kategorijeIzBaze->fetchAll(NULL, NULL, NULL);
+                                foreach ($kategorije as $kategorija) {
+                                    print "<li><a rel='nofollow' href='" . $this->url(array('b' => $kategorija->getId()), 'proizvodi') . "' title='" . $kategorija->getPunNaziv() . "'>" . $kategorija->getKratakNaziv() . "</a></li>";
+                                }
+                                ?>                               
+                            </ul>
+                        </li>
+                        <li><a href="<?php print $this->url(array(), 'autor'); ?>" <?php echo $this->layout()->link3; ?>>Autor</a></li>
+                        <li><a href="<?php print $this->url(array(), 'kontakt'); ?>" <?php echo $this->layout()->link4; ?>>Kontakt</a></li>
+                    </ul> 
+                    <div id="templatemo_search">
+                        <?php
+                        $pretraga = new Application_Form_Pretraga();
+                        print $pretraga;
+                        ?>
+                    </div>
+                    <br style="clear: left" />
+                </div> <!-- end of ddsmoothmenu -->
+            </div> <!-- END of templatemo_menu -->
+            <?php echo $this->placeholder('slajder'); ?>
+            <div id="templatemo_main">
+                <div id="sidebar" class="float_l">
+                    <div class="sidebar_box"><span class="bottom"></span>
+                        <h3>Proizvodi<a href="" class="more_link" rel="nofollow" target="_parent"></a></h3>   
+                        <div class="content"> 
+                            <ul class="sidebar_list">
+                                <?php
+                                foreach ($kategorije as $kategorija) {
+                                    if ($kategorija->getId() == 1) {
+                                        print "<li class='first'><a href='" . $this->url(array('b' => $kategorija->getId()), 'proizvodi') . "'>" . $kategorija->getPunNaziv() . "</a></li>";
+                                    } else if ($kategorija->getId() != 1 && count($kategorije) != count($kategorije)) {
+                                        print "<li><a href='" . $this->url(array('b' => $kategorija->getId()), 'proizvodi') . "'>" . $kategorija->getPunNaziv() . "</a></li>";
+                                    } else {
+                                        print "<li class='last'><a href='" . $this->url(array('b' => $kategorija->getId()), 'proizvodi') . "'>" . $kategorija->getPunNaziv() . "</a></li>";
+                                    }
+                                }
+                                ?>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="sidebar_box"><span class="bottom"></span>
+                        <h3>Najprodavaniji proizvodi<a href="" class="more_link" rel="nofollow" target="_parent"></a></h3>   
+                        <div class="content"> 
+                            <div class="bs_box">
+                                <a href="#"><img src="/images/templatemo_image_01.jpg" alt="Image 01" /></a>
+                                <h4><a href="#">Donec nunc nisl</a></h4>
+                                <p class="price">$10</p>
+                                <div class="cleaner"></div>
+                            </div>
+                            <div class="bs_box">
+                                <a href="#"><img src="/images/templatemo_image_01.jpg" alt="Image 02" /></a>
+                                <h4><a href="#">Aenean eu tellus</a></h4>
+                                <p class="price">$12</p>
+                                <div class="cleaner"></div>
+                            </div>
+                            <div class="bs_box">
+                                <a href="#"><img src="/images/templatemo_image_01.jpg" alt="Image 03" /></a>
+                                <h4><a href="#">Phasellus ut dui</a></h4>
+                                <p class="price">$20</p>
+                                <div class="cleaner"></div>
+                            </div>
+                            <div class="bs_box">
+                                <a href="#"><img src="/images/templatemo_image_01.jpg" alt="Image 04" /></a>
+                                <h4><a href="#">Vestibulum ante</a></h4>
+                                <p class="price">$16</p>
+                                <div class="cleaner"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div id="content" class="float_r">
+                    <?php echo $this->layout()->content; ?>
+                </div> 
+                <div class="cleaner"></div>
+            </div> <!-- END of templatemo_main -->
+            <div id="templatemo_footer">
+                <p>
+                    <?php
+                    print "<a href='" . $this->url(array(), 'naslovna') . "'>Naslovna</a> | ";
+                    print "<a href='" . $this->url(array(), 'proizvodiSvi') . "'>Proizvodi</a> | ";
+                    print "<a href='" . $this->url(array(), 'autor') . "'>Autor</a> | ";
+                    print "<a href='" . $this->url(array(), 'kontakt') . "'>Kontakt</a>";
+                    ?>
+                </p>
+                Copyright © 2013 <a href="http://www.sefovi.rs">Slovakia trading d.o.o.</a> | Designed by <a href="http://www.templatemo.com" target="_parent">Free CSS Templates</a>
+            </div> <!-- END of templatemo_footer -->
+        </div> <!-- END of templatemo_wrapper -->
+    </body>
+</html>
